@@ -1,0 +1,922 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* -------------------- VARIABLES -------------------- */
+/* --------------------------------------------------- */
+@import "main-var.less";
+
+@main-ani-speed: .3s;
+@main-start-scale: .25;
+@main-end-scale: .45;
+@main-cubic-bezier: cubic-bezier(.56,.01,.35,.52);
+@main-end-fadein: .95;
+@bodypart-fadein: .35;
+@bodypart-fadein-intro: .35;
+
+/* -------------------- FONTS -------------------- */
+/* ---------------------------------------------- */
+@font-face {
+        font-family: 'camptonmedium';
+        src: url('../fonts/rene_bieder_-_campton_medium-webfont.eot');
+        src: url('../fonts/rene_bieder_-_campton_medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rene_bieder_-_campton_medium-webfont.woff') format('woff'),
+         url('../fonts/rene_bieder_-_campton_medium-webfont.ttf') format('truetype'),
+         url('../fonts/rene_bieder_-_campton_medium-webfont.svg#camptonmedium') format('svg');
+        font-weight: normal;
+        font-style: normal;
+
+    }
+
+@font-face {
+    font-family: 'camptonlight';
+    src: url('../fonts/campton-light.eot');
+    src: url('../fonts/campton-light.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/campton-light.woff') format('woff'),
+         url('../fonts/campton-light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Campton-Thin';
+    src: url('../fonts/campton-thin.eot');
+    src: url('../fonts/campton-thin.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/campton-thin.woff') format('woff'),
+         url('../fonts/campton-thin.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* -------------------- KEY FRAMES -------------------- */
+/* --------------------------------------------------- */
+/* ----- ANIMATELEFT ----- */
+/* Firefox < 16 */
+@-moz-keyframes zoomDown {
+   0%     { -moz-transform: scale(@main-start-scale); }
+   100%   { -moz-transform: scale(@main-end-scale); }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes zoomDown {
+    0%    { -webkit-transform: scale(@main-start-scale); }
+   100%   { -webkit-transform: scale(@main-end-scale); }
+}
+
+/* Internet Explorer */
+@-ms-keyframes zoomDown {
+    0% 	  { -ms-transform: scale(@main-start-scale); }
+   100%   { -ms-transform: scale(@main-end-scale); }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes zoomDown {
+    0%    { -o-transform: scale(@main-start-scale); }
+   100%   { -o-transform: scale(@main-end-scale); }
+}
+@keyframes zoomDown {
+   0%     { transform: scale(@main-start-scale); }
+   100%   { transform: scale(@main-end-scale); }
+}
+
+/* ----- FADEIN ----- */
+/* Firefox < 16 */
+@-moz-keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: @main-end-fadein; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeIn {
+    from { opacity: 0;}
+    to   { opacity: @main-end-fadein; }
+}
+
+@-webkit-keyframes fadeIn {
+     from { opacity: 0;}
+    to   { opacity: @main-end-fadein; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: @main-end-fadein; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadeIn {
+    from { opacity: 0;}
+    to   { opacity: @main-end-fadein; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: @main-end-fadein; }
+}
+
+
+/* ----- FADEINBODYPART ----- */
+/* Firefox < 16 */
+@-moz-keyframes fadeInBodyPart {
+    from { opacity: 0; }
+    to   { opacity: @bodypart-fadein; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeInBodyPart {
+    from { opacity: 0;}
+    to   { opacity: @bodypart-fadein; }
+}
+
+@-webkit-keyframes fadeInBodyPart {
+     from { opacity: 0;}
+    to   { opacity: @bodypart-fadein; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadeInBodyPart {
+    from { opacity: 0; }
+    to   { opacity: @bodypart-fadein; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadeInBodyPart {
+    from { opacity: 0;}
+    to   { opacity: @bodypart-fadein; }
+}
+@keyframes fadeInBodyPart {
+    from { opacity: 0; }
+    to   { opacity: @bodypart-fadein; }
+}
+
+/* ----- FADEOUTBODYPART ----- */
+/* Firefox < 16 */
+@-moz-keyframes fadeOutBodyPart {
+    from { opacity: @bodypart-fadein; }
+    to   { opacity: 0; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeOutBodyPart {
+    from { opacity: @bodypart-fadein; }
+    to   { opacity: 0; }
+}
+
+@-webkit-keyframes fadeOutBodyPart {
+     from { opacity: @bodypart-fadein; }
+    to   { opacity: 0; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadeOutBodyPart {
+    from { opacity: @bodypart-fadein; }
+    to   { opacity: 0; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadeOutBodyPart {
+    from { opacity: @bodypart-fadein; }
+    to   { opacity: 0; }
+}
+@keyframes fadeOutBodyPart {
+    from { opacity: @bodypart-fadein; }
+    to   { opacity: 0; }
+}
+
+/* ----- FADEININTROBODYPART ----- */
+/* Firefox < 16 */
+@-moz-keyframes fadeInIntroBodyPart {
+    from { opacity: 0; }
+    to   { opacity: @bodypart-fadein-intro; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeInIntroBodyPart {
+    from { opacity: 0;}
+    to   { opacity: @bodypart-fadein-intro; }
+}
+
+@-webkit-keyframes fadeInIntroBodyPart {
+     from { opacity: 0;}
+    to   { opacity: @bodypart-fadein-intro; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadeInIntroBodyPart {
+    from { opacity: 0; }
+    to   { opacity: @bodypart-fadein-intro; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadeInIntroBodyPart {
+    from { opacity: 0;}
+    to   { opacity: @bodypart-fadein-intro; }
+}
+@keyframes fadeInIntroBodyPart {
+    from { opacity: 0; }
+    to   { opacity: @bodypart-fadein-intro; }
+}
+
+/* ----- FADEOUTINTROBODYPART ----- */
+/* Firefox < 16 */
+@-moz-keyframes fadeOutIntroBodyPart {
+    from { opacity: @bodypart-fadein-intro; }
+    to   { opacity: 0; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeOutIntroBodyPart {
+    from { opacity: @bodypart-fadein-intro; }
+    to   { opacity: 0; }
+}
+
+@-webkit-keyframes fadeOutIntroBodyPart {
+    from { opacity: @bodypart-fadein-intro; }
+    to   { opacity: 0; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadeOutIntroBodyPart {
+    from { opacity: @bodypart-fadein-intro; }
+    to   { opacity: 0; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadeOutIntroBodyPart {
+    from { opacity: @bodypart-fadein-intro; }
+    to   { opacity: 0; }
+}
+@keyframes fadeOutIntroBodyPart {
+    from { opacity: @bodypart-fadein-intro; }
+    to   { opacity: 0; }
+}
+
+
+/* ----- CLICKHEAD ----- */
+/* Firefox < 16 */
+@-moz-keyframes clickHead {
+    from { 
+        opacity: @bodypart-fadein-intro; 
+    }
+    to   { 
+        opacity: 0; 
+    }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes clickHead {
+    from { opacity: @bodypart-fadein-intro; }
+    to   { opacity: 0; }
+}
+
+@-webkit-keyframes clickHead {
+    0%    { 
+        -webkit-transform: scale(1);
+        top: 0;
+    }
+   100%   { 
+        -webkit-transform: scale(2);
+        top: 800px;
+    }
+}
+
+/* Internet Explorer */
+@-ms-keyframes clickHead {
+    from { opacity: @bodypart-fadein-intro; }
+    to   { opacity: 0; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes clickHead {
+    from { opacity: @bodypart-fadein-intro; }
+    to   { opacity: 0; }
+}
+@keyframes clickHead {
+    0%     { 
+        transform: scale(1); 
+    }
+   100%   { 
+        transform: scale(3); 
+    }
+}
+
+#center-box {
+	position: absolute;
+	width: 4px;
+	height: 4px;
+	background-color: red;
+	left: 50%;
+	margin-left: -2px;
+	top: 50%;
+	margin-left: -2x;
+	z-index: 100;	
+}
+
+body, html {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
+	background-color: #30373b;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.push {
+	clear: both;	
+}
+
+#page-wrapper {
+	position: relative;
+	width: 100%;
+	height: 95%;
+	overflow: hidden;
+    margin-top: 68px;
+}
+
+svg {
+	width: 100%;
+	height: 100%;
+}
+
+
+#davinci-svg {
+	position: absolute;
+    z-index: 1;
+	left: 50%;
+	top: 50%;
+	height: 200%;
+    width: 200%;
+}
+ 
+.animate-davinci-svg {
+    -webkit-animation: zoomDown 1s;
+    -moz-animation: zoomDown 1s;
+    -o-animation: zoomDown 1s;
+    -ms-animation: zoomDown 1s;
+    animation: zoomDown 1s;
+    
+    -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
+}
+
+/* ------------------------- TIER PANEL ---------------------------- */
+/* ---------------------------------------------------------------- */
+#tier-panel {
+    position: absolute;
+    z-index: 5;
+    width: auto;
+    height: 80px;
+    box-sizing: border-box;
+    padding-left: 50px;
+    margin-top: 30px;
+    opacity: 1;
+}
+
+.tier-item {
+    position: relative;
+    width: 84px;
+    height: 84px; 
+    color: #FFF;
+    opacity: 1;
+    float: left;
+    margin-right: 30px;
+    -moz-transform: scale(.01);
+    -webkit-transform: scale(.01);
+    -o-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(.01);
+    z-index: 5;
+}
+.tier-circle {
+    position: relative;
+    border-radius: 50%;
+    border: solid 2px #5d9ad2;
+    width: 80px;
+    height: 80px; 
+    background-color: #30373b;
+    color: #FFF;
+    z-index: 5;
+}
+    .tier-circle:hover {
+        cursor: pointer;
+    }
+.tier-expand-circle {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+	transform: scale(0.275, 0.275);
+	-webkit-transform: scale(0.275, 0.275);
+	-moz-transform: scale(0.275, 0.275);
+	-o-transform: scale(0.275, 0.275);
+	-ms-transform: scale(0.275, 0.275);
+    left: -108px;
+    top: -108px;
+    border-radius: 50%;
+    border: solid 2px #5d9ad2;
+    opacity: .5;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.tier-item .check {
+	position: absolute;
+	z-index: 10;
+	left: 50%;
+	margin-left: -15px;
+	top: 50%;
+	margin-top: -15px;
+	background-image: url("../images/icon-check.png");
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+	transform: scale(0.01, 0.01);
+	-webkit-transform: scale(0.01, 0.01);
+	-moz-transform: scale(0.01, 0.01);
+	-o-transform: scale(0.01, 0.01);
+	-ms-transform: scale(0.01, 0.01);
+	opacity: 0;
+}
+
+.tier-line {
+    position: absolute;
+    z-index: 5;
+    width: 0px;
+    height: 1px;
+    top: 42px;
+    background-color: #b7cfe1;
+}
+
+#icon-davinci {
+    position: absolute;
+    left: 50%;
+    margin-left: -12px;
+    top: 50%;
+    margin-top: -30px;
+    width: 24px;
+    height: 60px;
+    background-image: url('../images/icon-davinci.png');
+    background-repeat: no-repeat;
+
+}
+
+#tier-tracker {
+    position: absolute;
+    z-index: 200;
+    height: 50px;
+    width: 100%;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .7);
+    color: #FFF;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+#tier-tracker-wrapper {
+    padding: 18px 50px;
+}
+
+/* ------------------------- RIGHT PANEL -------------------------- */
+/* --------------------------------------------------------------- */
+#right-panel-wrapper {
+    position: absolute;
+    z-index: 6;
+    right: 0px;
+    top: 0px;
+    width: 400px;
+    height: 100%;
+    pointer-events: none;
+    margin: 5px;
+
+}
+.right-panel {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 67px 25px 25px 25px;
+    background-color: #606b76;
+    right: 0px;
+    z-index: 3;
+    opacity: 0;
+    pointer-events: visible;
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.2);
+    transform: translate(100%, 0px);
+    -webkit-transform: translate(100%, 0px);
+    -moz-transform: translate(100%, 0px);
+    -o-transform: translate(100%, 0px);
+    -ms-transform: translate(100%, 0px);
+}
+
+.right-panel-top .title-text {
+	width: auto;
+	float: left;
+    font-family: 'Campton-Thin';
+    font-size: 18px;
+    line-height: 18px;
+    color: #FFF;
+    margin-bottom: 3px;
+}
+
+.right-panel-top {
+	position: absolute;
+	z-index: 2;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 14px 25px 14px 25px;
+	height: 42px;
+	background: #454e55;
+} .right-panel-top:hover {
+	cursor: pointer;		
+}
+
+.right-panel-textarea {
+    font-family: 'camptonlight';
+    font-size: 14px;
+    line-height: 1.5em;
+    width: 100%;
+    max-width: 100%;
+    max-height: 125px;
+    resize: none;
+    height: 250px;
+    box-sizing: border-box;
+    border: none;
+    padding: 10px;
+    background: #454e55;
+    color: #FFF;
+    margin-bottom: 5px;
+}
+
+.right-panel-submit {
+	float: left;
+    font-family: 'camptonlight';
+    background: #e46767;
+    width: 49%;
+    height: 45px;
+    color: #FFF;
+    font-size: 14px;
+    line-height: 45px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.right-panel-submit-normal {
+	float: left;
+	font-family: 'camptonlight';
+    background: #67e46a;
+    width: 49%;
+	margin-right: 2%;
+    height: 45px;
+    color: #FFF;
+    font-size: 14px;
+    line-height: 45px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.right-panel-submit span {
+	position: relative;
+	top: 0px;
+	height: 45px;
+	width: 100%;
+	line-height: 45px;	
+}
+
+.right-panel-error {
+	position: absolute;
+	z-index: 5;
+	background-color: rgba(69, 78, 85, .8);
+	padding: 20px 20px 17px 20px;
+	font-family: 'camptonlight';
+	font-size: 13px;
+	line-height: 1.5em;
+	top: 66px;
+	color: #FFF;
+	width: 250px;
+	opacity: 0;
+	
+}
+
+.right-panel-error-triangle {
+	position: absolute;
+	z-index: 6;
+	width: 0; 
+	height: 0; 
+	right: -10px;
+	top: 10px;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid rgba(69, 78, 85, .8);
+}
+
+.right-panel-color {
+	width: 50px;
+	height: 50px;
+	position: relative;
+	float: left;
+	margin-right: 5px;
+	margin-bottom: 7px;
+} .right-panel-color:hover {
+	cursor: pointer;
+}
+
+#right-panel-color-red {
+	background-color: #e46767;	
+}
+#right-panel-color-orange {
+	background-color: #e49667;	
+}
+#right-panel-color-yellow {
+	background-color: #eae865;	
+}
+#right-panel-color-green {
+	background-color: #67e46a;	
+}
+#right-panel-color-blue {
+	background-color: #67a8e4;	
+}
+
+.right-panel-color .check {
+	position: absolute;
+	left: 50%;
+	margin-left: -15px;
+	top: 50%;
+	margin-top: -15px;
+	background-image: url("../images/icon-check.png");
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+	transform: scale(0.01, 0.01);
+	-webkit-transform: scale(0.01, 0.01);
+	-moz-transform: scale(0.01, 0.01);
+	-o-transform: scale(0.01, 0.01);
+	-ms-transform: scale(0.01, 0.01);
+	opacity: 0;
+}
+
+.right-panel-color .active {
+	transform: scale(1, 1);
+	-webkit-transform: scale(1, 1);
+	-moz-transform: scale(1, 1);
+	-o-transform: scale(1, 1);
+	-ms-transform: scale(1, 1);
+	opacity: 1;
+}
+
+/* ------------------------- PATIENT INFO PANEL ---------------------------- */
+/* ------------------------------------------------------------------------ */
+#patient-info {
+    position: absolute;
+    width: 350px;
+    height: 100%;
+    top: 50px;
+    right: 50px;
+    z-index: 2;
+    -webkit-transform: translate(50%, 0px);
+    -moz-transform: translate(50%, 0px);
+    -o-transform: translate(50%, 0px);
+    -ms-transform: translate(50%, 0px);
+    opacity: 0;
+}
+
+.patient-name {
+    font-family: 'camptonlight';
+    font-size: 26px;
+    color: #FFF;
+    margin-bottom: -5px;
+    line-height: 1.5em;
+}
+
+.patient-info-block {
+    width: 100%;
+    display: block;
+    margin-bottom: 15px;
+    line-height: 1.5em;
+}
+
+.patient-age {
+    display: inline-block;
+    font-family: 'camptonlight';
+    font-size: 14px;
+    color: #b7cfe1;
+    margin-right: 5px;
+    line-height: 1.5em;
+}
+
+.patient-gender {
+    display: inline-block;
+    font-family: 'camptonlight';
+    font-size: 14px;
+    color: #b7cfe1;
+    margin-right: 5px;
+    line-height: 1.5em;
+}
+
+.patient-location {
+    display: inline-block;
+    font-family: 'camptonlight';
+    font-size: 13px;
+    color: #b7cfe1;
+    line-height: 1.5em;
+}
+
+.patient-reason-title {
+    color: #FFF;
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+
+.patient-reason {
+    display: inline-block;
+    font-family: 'camptonlight';
+    font-size: 13px;
+    color: #b7cfe1;
+    line-height: 1.5em;
+}
+
+
+/* -------------------- Body Part Mouse Events -------------------- */
+/* --------------------------------------------------------------- */
+.animate-mouseover {
+    cursor: pointer;
+
+    -webkit-animation: fadeInBodyPart .5s;
+    -moz-animation: fadeInBodyPart .5s;
+    -o-animation: fadeInBodyPart .5s;
+    -ms-animation: fadeInBodyPart .5s;
+    animation: fadeInBodyPart .5s;
+    
+    -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
+    animation-fill-mode: forwards;
+}
+
+.animate-mouseout {
+    cursor: pointer;
+
+    -webkit-animation: fadeOutBodyPart .3s;
+    -moz-animation: fadeOutBodyPart .3s;
+    -o-animation: fadeOutBodyPart .3s;
+    -ms-animation: fadeOutBodyPart .3s;
+    animation: fadeOutBodyPart .3s;
+    
+    -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
+    animation-fill-mode: forwards;
+}
+
+.animate-clickout {
+	cursor: default;
+	opacity: .45;
+    -webkit-animation: fadeOutBodyPart .5s;
+    -moz-animation: fadeOutBodyPart .5s;
+    -o-animation: fadeOutBodyPart .5s;
+    -ms-animation: fadeOutBodyPart .5s;
+    animation: fadeOutBodyPart .5s;
+    
+    -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
+    animation-fill-mode: forwards;
+}
+
+.animate-intro-in {
+    -webkit-animation: fadeInIntroBodyPart .2s;
+    -moz-animation: fadeInIntroBodyPart .2s;
+    -o-animation: fadeInIntroBodyPart .2s;
+    -ms-animation: fadeInIntroBodyPart .2s;
+    animation: fadeInIntroBodyPart .2s;
+    
+    -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
+}
+
+.animate-intro-out {
+    -webkit-animation: fadeOutIntroBodyPart 1.5s;
+    -moz-animation: fadeOutIntroBodyPart 1.5s;
+    -o-animation: fadeOutIntroBodyPart 1.5s;
+    -ms-animation: fadeOutIntroBodyPart 1.5s;
+    animation: fadeOutIntroBodyPart 1.5s;
+    
+    -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
+}
+
+/* -------------------- TIER 1 CLICK ANIMATIONS -------------------- */
+/* ---------------------------------------------------------------- */
+/* These are actually applied to the davinci-wrapper element */
+.animate-click-head {
+    -webkit-animation: clickHead .5s;
+    -moz-animation: clickHead .5s;
+    -o-animation: clickHead .5s;
+    -ms-animation: clickHead .5s;
+    animation: clickHead .5s;
+    
+    -webkit-animation-fill-mode: forwards; /* Chrome, Safari, Opera */
+}
+
+/* ------------------------- RETINA QUERIES ------------------------- */
+/* ----------------------------------------------------------------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) { 
+    #icon-davinci {
+        width: 24px;
+        height: 60px;
+        background-size: 24px 60px;
+        background-image: url('../images/icon-davinci-2x.png');
+    }
+	.right-panel .check {
+        background-size: 30px 30px;
+        background-image: url('../images/icon-check-2x.png');
+    }  
+}
+
+/* ------------------------- MEDIA QUERIES ------------------------- */
+/* ---------------------------------------------------------------- */
+@media(max-width: 768px) {
+    #davinci-svg {
+        left: 320px;
+    }
+    #patient-info {
+        position: absolute;
+        width: 300px;
+        height: 100%;
+        top: 20px;
+        right: 20px;
+        z-index: 2;
+        -webkit-transform: translate(50%, 0px);
+        -moz-transform: translate(50%, 0px);
+        -o-transform: translate(50%, 0px);
+        -ms-transform: translate(50%, 0px);
+        opacity: 0;
+    }
+
+    textarea {
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+    }
+}
+@media(max-width: 480px) {
+    #right-panel-wrapper {
+        display: none;
+    }
+}
+
